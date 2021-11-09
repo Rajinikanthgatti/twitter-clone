@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 //Routes
 const loginRoutes = require("./Routes/loginRoutes")
 const registerRoutes = require("./Routes/registerRoutes")
+const logoutRoute = require("./Routes/logoutRoute")
 
 app.use(session({
     secret: "session secretkey",
@@ -21,13 +22,12 @@ app.use(session({
 
 app.use("/login", loginRoutes)
 app.use("/register", registerRoutes)
+app.use("/logout", logoutRoute)
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
-    console.log(req.session)
     var payload = {
         userLoggedIn: req.session.user
     }
-    console.log(payload);
     console.log("Home page")
-    return res.status(200);
+    res.status(200).send("At Home page");
 })

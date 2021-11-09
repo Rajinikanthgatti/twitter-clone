@@ -52,8 +52,7 @@ router.post("/",
                 nuser.password = await bcrypt.hash(nuser.password, 10);
                 User.create(nuser, ()=>{
                     req.session.user = nuser;
-                    console.log(req.session);
-                    console.log(req.sessionID);
+                    console.log(req.session)
                 })
             } else{
                 if(email == user.email){
@@ -62,11 +61,12 @@ router.post("/",
                     return res.status(403).json({error : "User name is already taken"})
                 }
             }
-            res.status(200).write("Registration");
-            return res.end();
+            return res.status(201).send({msg: "User registered successfully"});
+            //res.status(200).write("Registration");
+            //return res.end();
         } catch(err){
             console.log(err);
-            res.status(500).send("Server Error, please try again after sometime!!")
+            //return res.status(500).send("Server Error, please try again after sometime!!")
         }
     })
 module.exports = router
