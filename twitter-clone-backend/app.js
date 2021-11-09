@@ -7,7 +7,8 @@ const mongoose = require("./database");  //Connects to the MongoDB database
 const session = require("express-session");
 
 const server = app.listen(port, () => {console.log("Server running")})
-app.use(bodyParser.urlencoded({extended: false}))
+//app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json({extended: false}))
 
 //Routes
 const loginRoutes = require("./Routes/loginRoutes")

@@ -66,7 +66,7 @@ router.post("/",
             //return res.end();
         } catch(err){
             console.log(err);
-            //return res.status(500).send("Server Error, please try again after sometime!!")
+            return res.status(500).send("Server Error, please try again after sometime!!")
         }
     })
 module.exports = router
