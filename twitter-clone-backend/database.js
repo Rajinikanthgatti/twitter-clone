@@ -5,7 +5,7 @@ class Database {
         this.connect();
     }
     connect() {
-        mongoose.connect("mongodb+srv://rajinikanth:test123@twitterclonecluster.ycsus.mongodb.net/TwitterCloneDB?retryWrites=true&w=majority")
+        mongoose.connect("mongodb+srv://<UserName>:<Password>@twitterclonecluster.ycsus.mongodb.net/TwitterCloneDB?retryWrites=true&w=majority")
         .then(()=>{
             console.log("Successfully connected to DB")
         }).catch(()=>{
