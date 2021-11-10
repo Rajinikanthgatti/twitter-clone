@@ -17,6 +17,7 @@ const logoutRoute = require("./Routes/logoutRoute")
 
 //API Routes
 const postsApiRoutes = require("./Routes/api/postsApiRoutes")
+const profileApiRoutes = require("./Routes/api/profileApiRoutes")
 
 app.use(session({
     secret: "session secretkey",
@@ -29,6 +30,7 @@ app.use("/register", registerRoutes)
 app.use("/logout", logoutRoute)
 //Api
 app.use("/api/posts", postsApiRoutes)
+app.use("/profile", profileApiRoutes)
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
     var payload = {
