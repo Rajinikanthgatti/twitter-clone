@@ -29,11 +29,6 @@ router.post("/",
             return res.status(400).json({ errors: errors.array() })
         }
         try {
-            const {content} = req.body.content;
-            //console.log(req)
-            console.log(req.body.content)
-            //console.log(req.session);
-            //console.log("content - " +  req.body);
             var postData = {
                 content: req.body.content,
                 postedBy: req.session.user
@@ -46,7 +41,24 @@ router.post("/",
             console.log(error);
             return res.status(500).send("Server Error, please try again after sometime!!")
         }
-        //res.status(200).send("Posts API");
+})
+//Liking or unliking a post
+router.put("/:id/like", async (req, res, next) => {
+    const postId = req.params.id;
+    const userId = req.session.user._id;
+    const isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
+    const option = isLiked ? "$pull" : "$addToSet";
+    console.log(isLiked)
+    console.log(option)
+    let result = null;
+    let post = null;
+    try{
+        result = req.session.user = await User.findByIdAndUpdate(userId, {[option] : {likes : postId}}, {new : true})
+        post = await Post.findByIdAndUpdate(postId, {[option] : {likes : userId}}, {new : true})
+        res.status(200).send(post);
+    }catch{
+        res.status(400).send("Error liking the post");
+    }
 })
 
 module.exports = router
