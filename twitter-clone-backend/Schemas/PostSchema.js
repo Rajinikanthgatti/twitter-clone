@@ -31,7 +31,7 @@ const PostSchema = new Schema({
     replyTo: {
         type: Schema.Types.ObjectId,
         ref: 'Post'
-    }
+    } 
 }, { timestamps: true })
 
 var Post = mongoose.model("Post", PostSchema);
