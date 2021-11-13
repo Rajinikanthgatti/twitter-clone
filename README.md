@@ -37,13 +37,13 @@
     GetPosts - http://localhost:3005/api/posts
     requestType - GET
 
-    LikePost - http://localhost:3005/api/posts/618bcec61a2d1db726a859c7/like
+    LikePost or disLikePost - http://localhost:3005/api/posts/618bcec61a2d1db726a859c7/like
     requestType - PUT
     JSON - {
 	        "email" : "rgattikoppul@gmail.com",
 	        "password" : "123456"
             }
-    Retweet - http://localhost:3005/api/posts/618bcec61a2d1db726a859c7/retweet
+    Retweet or removeRetweet - http://localhost:3005/api/posts/618bcec61a2d1db726a859c7/retweet
     requestType - PUT
 
     SinglePost - http://localhost:3005/api/posts/618bcec61a2d1db726a859c7
@@ -53,4 +53,13 @@
     requestType - DELETE
 
     User Profile - http://localhost:3005/profile/name
+    requestType - GET
+
+    Following or unfollowing a specific user - http://localhost:3005/api/users/618fa6e6d756215118905350/follow
+    requestType - PUT
+
+    List of Following users - http://localhost:3005/api/users/618bceb31a2d1db726a859c4/following
+    requestType - GET
+
+    List of Followed users - http://localhost:3005/api/users/618fa6e6d756215118905350/followers
     requestType - GET
