@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const upload = multer({dest : "uploads/"});
+const path = require("path");
+const fs = require("fs");
 const {check, validationResult} = require("express-validator");
 const User = require("../../Schemas/UserSchema")
 
@@ -47,5 +51,24 @@ router.get("/:userId/followers", async (req, res, next) => {
     } catch (error) {
         return res.status(400).send({msg : 'Session Error'})
     }
+})
+
+//Updating the profilePicture
+router.post("/profilePicture", upload.single("croppedImage"), async (req, res, next) => {
+    if(!req.file){
+        console.log("No File was uploaded")
+        return res.status(400).send({error : "Please upload an image"})
+    }
+    var filePath = `/uploads/images/${req.file.filename}.png`
+    var tempPath = req.file.path;
+    console.log(tempPath)
+    var targetPath = path.join(__dirname, `../../${filePath}`);
+    fs.rename(tempPath, targetPath, async err => {
+        if(err){
+            res.status(400).send({error : err})
+        }
+        req.session.user = await User.findByIdAndUpdate(req.session.user._id, { profilePic: filePath}, {new : true})
+        res.status(200).send(req.session.user)
+    })
 })
 module.exports = router

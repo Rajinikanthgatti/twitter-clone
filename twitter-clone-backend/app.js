@@ -19,6 +19,7 @@ const logoutRoute = require("./Routes/logoutRoute")
 const postsApiRoutes = require("./Routes/api/postsApiRoutes")
 const profileApiRoutes = require("./Routes/api/profileApiRoutes")
 const userApiRouters = require("./Routes/api/userApiRoutes")
+const uploadApiRouters = require("./Routes/api/uploadApiRoutes")
 
 app.use(session({
     secret: "session secretkey",
@@ -33,6 +34,7 @@ app.use("/logout", logoutRoute)
 app.use("/api/posts", postsApiRoutes)
 app.use("/profile", profileApiRoutes)
 app.use("/api/users", userApiRouters)
+app.use("/uploads", uploadApiRouters)
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
     var payload = {
