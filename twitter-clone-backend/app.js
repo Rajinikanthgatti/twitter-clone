@@ -14,6 +14,7 @@ app.use(bodyParser.json({extended: false}))
 const loginRoutes = require("./Routes/loginRoutes")
 const registerRoutes = require("./Routes/registerRoutes")
 const logoutRoute = require("./Routes/logoutRoute")
+const searchRoute = require("./Routes/searchRoutes")
 
 //API Routes
 const postsApiRoutes = require("./Routes/api/postsApiRoutes")
@@ -35,6 +36,7 @@ app.use("/api/posts", postsApiRoutes)
 app.use("/profile", profileApiRoutes)
 app.use("/api/users", userApiRouters)
 app.use("/uploads", uploadApiRouters)
+app.use("/search", searchRoute)
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
     var payload = {

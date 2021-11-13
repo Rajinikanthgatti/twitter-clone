@@ -63,3 +63,20 @@
 
     List of Followed users - http://localhost:3005/api/users/618fa6e6d756215118905350/followers
     requestType - GET
+
+    Uploading profile picture - http://localhost:3005/api/users/profilePicture
+    requestType - POST
+        form-data : {
+            type: File,
+            data : {
+                croppedImage : Image.jpg
+            }
+        }
+    Getting the profile-pic - http://localhost:3005/uploads/images/c92be1f2ff4681daff82c6031008c39c.png
+    requestType - GET
+
+    Searching in Users - http://localhost:3005/search/users?query=c
+    requestType - GET
+
+    Searching in Posts - http://localhost:3005/search/posts?query=tweet
+    requestType - GET
