@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({extended: false}))
 router.get("/users", async (req, res, next) => {
     try{
         const query = req.query.query;
-        console.log(query)
         const result = await User.find({
             $or:[
                 {firstName : { $regex : query, $options: "i"}},
@@ -21,7 +20,6 @@ router.get("/users", async (req, res, next) => {
                 {userName : { $regex : query, $options: "i"}}
             ]
         })
-        console.log(result)
         return res.status(200).send(result);
     }catch(error){
         return res.status(200).send({error : error});
@@ -32,13 +30,11 @@ router.get("/users", async (req, res, next) => {
 router.get("/posts", async (req, res, next) => {
     try{
         const query = req.query.query;
-        console.log(query)
         const result = await Post.find({
             $or:[
                 {content : { $regex : query, $options: "i"}}
             ]
         })
-        console.log(result)
         return res.status(200).send(result);
     }catch(error){
         return res.status(200).send({error : error});
@@ -47,7 +43,6 @@ router.get("/posts", async (req, res, next) => {
 
 router.get("/", (req, res, next) => {
     var payload = createPayLoad(req.session.user);
-    //console.log(payload)
     return res.status(200).send("Search");
 })
 router.get("/:selectedTab", (req, res, next) => {
