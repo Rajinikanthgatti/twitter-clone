@@ -25,7 +25,6 @@ router.post("/", async (req, res, next) => {
         users: users,
         isGroupChart: true
     };
-    console.log(chartData)
     try {
         await Chart.create(chartData)
     } catch (error) {
