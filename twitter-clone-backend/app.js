@@ -22,6 +22,7 @@ const profileApiRoutes = require("./Routes/api/profileApiRoutes")
 const userApiRouters = require("./Routes/api/userApiRoutes")
 const uploadApiRouters = require("./Routes/api/uploadApiRoutes")
 const chartApiRouters = require("./Routes/api/chartsApiRouters")
+const messageApiRouters = require("./Routes/api/messageApiRoutes")
 
 app.use(session({
     secret: "session secretkey",
@@ -39,6 +40,7 @@ app.use("/api/users", userApiRouters)
 app.use("/uploads", uploadApiRouters)
 app.use("/search", searchRoute)
 app.use("/api/charts", chartApiRouters)
+app.use("/api/message", messageApiRouters)
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
     var payload = {
