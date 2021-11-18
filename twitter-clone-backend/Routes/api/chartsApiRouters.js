@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //Add charts to the DB
 router.post("/", async (req, res, next) => {
-    console.log(req.body.users)
     if(!req.body.users){
         return res.status(400).send("User details are not provided");
     }
