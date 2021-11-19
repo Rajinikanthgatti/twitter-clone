@@ -54,8 +54,6 @@ router.post("/",
             if(req.body.replyTo != null){
                 postData.replyTo = req.body.replyTo
             }
-            console.log("postData");
-            console.log(postData);
             await Post.create(postData).then(async newPost => {
                 console.log("newPost")
                 console.log(newPost)
