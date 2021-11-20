@@ -55,8 +55,6 @@ router.post("/",
                 postData.replyTo = req.body.replyTo
             }
             await Post.create(postData).then(async newPost => {
-                console.log("newPost")
-                console.log(newPost)
                 newPost = await User.populate(newPost, {path: "postedBy", select: "-password"});
                 res.status(201).send(newPost)
             })
