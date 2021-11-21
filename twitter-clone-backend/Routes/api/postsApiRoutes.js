@@ -50,7 +50,6 @@ router.post("/",
                 content: req.body.content,
                 postedBy: req.session.user
             }
-            console.log(req.body.replyTo)
             if(req.body.replyTo != null){
                 postData.replyTo = req.body.replyTo
             }
@@ -59,7 +58,6 @@ router.post("/",
                 res.status(201).send(newPost)
             })
         } catch (error) {
-            console.log(error);
             return res.status(500).send("Server Error, please try again after sometime!!")
         }
 })
