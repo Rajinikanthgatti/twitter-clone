@@ -16,7 +16,6 @@ router.post("/", async (req, res, next) => {
         return res.status(400).send("User details are not provided");
     }
     var users = JSON.parse(req.body.users)
-    console.log(users)
     if(users.length == 0){
         return res.status(400).send("User details are not provided");
     }
